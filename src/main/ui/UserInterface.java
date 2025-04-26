@@ -35,6 +35,13 @@ public class UserInterface extends JFrame {
     private JScrollPane galleryPane;
 
     /*
+     * EFFECTS: Launch the app
+     */
+    public static void main(String[] args) {
+        new UserInterface();
+    }
+
+    /*
      * EFFECTS: Sets up the window in which the gallery will be shown
      */
     public UserInterface() {
