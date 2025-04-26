@@ -1,12 +1,13 @@
 package persistence;
 
 import model.Drawing;
-import model.Event;
-import model.EventLog;
 import model.Gallery;
 
 import java.io.*;
 import org.json.JSONObject;
+
+import logging.Event;
+import logging.EventLog;
 
 // Represents a writer that writes JSON representations of gallery and selected drawing to file
 // ATTRIBUTION: This code is based on the JSON Serialization example project https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo

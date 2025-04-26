@@ -15,10 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import logging.Event;
+import logging.EventLog;
 import model.Drawing;
-import model.EventLog;
 import model.Gallery;
-import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 

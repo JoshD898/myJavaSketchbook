@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "ui.Test",
+            "projectName": "MySketchApp_f9bcf021"
+        },
+        {
+            "type": "java",
             "name": "UserInterface",
             "request": "launch",
             "mainClass": "ui.UserInterface",

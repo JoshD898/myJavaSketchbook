@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 import java.awt.Color;
 import org.json.*;
 
+import logging.Event;
+import logging.EventLog;
 import model.Drawing;
-import model.EventLog;
-import model.Event;
 import model.Gallery;
 
 // Represents a reader that reads gallery and drawing from JSON data stored in file

@@ -4,6 +4,9 @@ import java.awt.Color;
 
 import org.json.JSONObject;
 
+import logging.Event;
+import logging.EventLog;
+
 // Represent a drawing having a title, color, width (in pixels) and height (in pixels)
 public class Drawing {
 

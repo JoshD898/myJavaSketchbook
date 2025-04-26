@@ -5,6 +5,9 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import logging.Event;
+import logging.EventLog;
+
 // Represents a gallery containing an arbitrary number of drawings
 public class Gallery {
 
