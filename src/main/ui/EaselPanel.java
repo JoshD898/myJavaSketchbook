@@ -49,7 +49,7 @@ public class EaselPanel extends AbstractDisplayPanel {
         if (isNewDrawing) {
             drawingPanel = new EditableDrawingPanel(makeDefaultDrawing(), MIN_BRUSH_SIZE, Color.BLACK);
         } else {
-            drawingPanel = new EditableDrawingPanel(UserInterface.getInstance().getCurrentDrawing().copy(), MIN_BRUSH_SIZE, Color.BLACK);
+            drawingPanel = new EditableDrawingPanel(UserInterface.getInstance().getCurrentDrawing().getCopy(), MIN_BRUSH_SIZE, Color.BLACK);
         }
 
         title.setText(drawingPanel.drawing.getTitle());

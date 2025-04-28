@@ -57,7 +57,7 @@ public class Drawing extends BufferedImage {
      * 
      * @return A copy of the current drawing
      */
-    public Drawing copy() {
+    public Drawing getCopy() {
         Drawing newDrawing = new Drawing(super.getWidth(), super.getHeight(), backgroundColor, title);
         newDrawing.setContent(this);
         return newDrawing;        
