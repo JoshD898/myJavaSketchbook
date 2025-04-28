@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * Provides a base layout for panels in the application, consisting of a top panel, a middle panel, and a bottom panel. 
  * It also provides a custom button design for use in the bottom panel.
  * 
- * Subclasses must implement their specific content within the middle panel, and add their own buttons to the bottom panel.
+ * Subclasses must add their content to the middle panel, and add their own buttons to the bottom panel.
  */
 abstract class AbstractLayout {
     private static final int TOP_PANEL_HEIGHT = 60;

@@ -37,14 +37,14 @@ public class Drawing extends BufferedImage {
         int width = getWidth();
         int height = getHeight();
         int rgb = color.getRGB();
-        int rSquared = radius * radius;
+        int radiusSquared = radius * radius;
 
         for (int x = centerX - radius; x <= centerX + radius; x++) {
             for (int y = centerY - radius; y <= centerY + radius; y++) {
                 if (x >= 0 && x < width && y >= 0 && y < height) {
                     int dx = x - centerX;
                     int dy = y - centerY;
-                    if (dx * dx + dy * dy <= rSquared) {
+                    if (dx * dx + dy * dy <= radiusSquared) {
                         setRGB(x, y, rgb);
                     }
                 }

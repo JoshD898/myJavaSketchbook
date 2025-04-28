@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 public class DrawingPanel extends JPanel {
     protected Drawing drawing;
 
-    private final Color BORDER_COLOR = Color.BLACK;
-    private final int BORDER_SIZE = 2;
+    private static final Color BORDER_COLOR = Color.BLACK;
+    private static final int BORDER_SIZE = 2;
 
     public DrawingPanel(Drawing drawing) {
         this.drawing = drawing;

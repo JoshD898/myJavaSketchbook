@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  * Provides a structure for components that will display a drawing panel.
  * Initializes a title field to display the title of the drawing above the drawing panel.
  * 
- * Subclasses are responsible for defining their left and right components (e.g., navigation arrows, color palette, etc.).
+ * Subclasses are responsible for defining their left and right components.
  */
 abstract class AbstractDisplayPanel extends AbstractLayout {
     private static final int HORIZONTAL_SPACER = 85;

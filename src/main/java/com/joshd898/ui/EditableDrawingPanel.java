@@ -7,7 +7,8 @@ import com.joshd898.model.Drawing;
 
 
 /**
- * Displays a drawing that can be edited by clicking or draging on it. The edits made depend on the brush size and color.
+ * Displays a drawing that can be edited by clicking or draging on it. 
+ * The edits made depend on the brush size and color.
  */
 public class EditableDrawingPanel extends DrawingPanel {
     private int brushSize;

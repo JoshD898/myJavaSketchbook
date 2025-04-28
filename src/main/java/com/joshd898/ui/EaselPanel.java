@@ -18,12 +18,24 @@ import javax.swing.JSlider;
 
 
 /**
- * Display a single drawing that can be drawn on via mouse actions. Users can change the brush color and size, as well as the drawing title.
+ * Display a single drawing that can be drawn on via mouse actions. 
+ * Users can change the brush color and size, as well as the drawing title.
  * 
  * Buttons on the bottom panel allow users to clear the drawing, cancel their changes or save their changes.
  */
 public class EaselPanel extends AbstractDisplayPanel {
-    private static final Color[] COLORS = {Color.BLACK, Color.GREEN, Color.ORANGE, Color.YELLOW, Color.RED, Color.BLUE, Color.MAGENTA, Color.WHITE, Color.CYAN, Color.GRAY};
+    private static final Color[] COLORS = {
+        Color.BLACK, 
+        Color.GREEN, 
+        Color.ORANGE, 
+        Color.YELLOW, 
+        Color.RED, 
+        Color.BLUE, 
+        Color.MAGENTA, 
+        Color.WHITE, 
+        Color.CYAN, 
+        Color.GRAY
+    };
     private static final int COLOR_BUTTON_RADIUS = 30;
     private static final int COLOR_BUTTON_SPACER = 10;
 
@@ -48,7 +60,9 @@ public class EaselPanel extends AbstractDisplayPanel {
         if (isNewDrawing) {
             drawingPanel = new EditableDrawingPanel(makeDefaultDrawing(), MIN_BRUSH_SIZE, Color.BLACK);
         } else {
-            drawingPanel = new EditableDrawingPanel(UserInterface.getInstance().getCurrentDrawing().getCopy(), MIN_BRUSH_SIZE, Color.BLACK);
+            drawingPanel = new EditableDrawingPanel(UserInterface.getInstance().getCurrentDrawing().getCopy(), 
+                                                    MIN_BRUSH_SIZE, 
+                                                    Color.BLACK);
         }
 
         title.setText(drawingPanel.drawing.getTitle());
@@ -147,7 +161,11 @@ public class EaselPanel extends AbstractDisplayPanel {
     private JPanel brushSliderAndIndicator() {
         JPanel panel = new JPanel(new BorderLayout());
 
-        JSlider sizeSlider = new JSlider(JSlider.VERTICAL, MIN_BRUSH_SIZE, MAX_BRUSH_SIZE, ((EditableDrawingPanel) drawingPanel).getBrushSize());
+        JSlider sizeSlider = new JSlider(JSlider.VERTICAL, 
+                                         MIN_BRUSH_SIZE, 
+                                         MAX_BRUSH_SIZE, 
+                                         ((EditableDrawingPanel) drawingPanel).getBrushSize());
+
         sizeSlider.setMinimumSize(new Dimension(1, BRUSH_SLIDER_HEIGHT));
         sizeSlider.addChangeListener(e -> {
             ((EditableDrawingPanel) drawingPanel).setBrushSize(sizeSlider.getValue());

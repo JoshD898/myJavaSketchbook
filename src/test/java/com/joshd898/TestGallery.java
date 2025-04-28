@@ -12,26 +12,26 @@ import com.joshd898.model.Gallery;
 public class TestGallery {
     Drawing d1;
     Drawing d2;
-    Gallery g;
+    Gallery gallery;
 
     @BeforeEach
     void runBefore() {
         d1 = new Drawing(10, 10, Color.WHITE, "Drawing 1");
         d2 = new Drawing(10, 10, Color.BLACK, "Drawing 2");
 
-        g = new Gallery();
+        gallery = new Gallery();
     }
 
     @Test
     void testConstructor() {
-        assertTrue(g.getDrawingList().isEmpty());
+        assertTrue(gallery.getDrawingList().isEmpty());
     }
 
     @Test
     void testAddAndRemoveDrawings() {
-        g.addDrawing(d1);
-        assertEquals(g.getDrawingList().size(), 1);
-        g.removeDrawing(0);
-        assertTrue(g.getDrawingList().isEmpty());
+        gallery.addDrawing(d1);
+        assertEquals(gallery.getDrawingList().size(), 1);
+        gallery.removeDrawing(0);
+        assertTrue(gallery.getDrawingList().isEmpty());
     }
 }

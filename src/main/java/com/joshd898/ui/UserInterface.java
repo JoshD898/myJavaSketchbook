@@ -81,7 +81,7 @@ public class UserInterface extends JFrame {
     }
 
     public void increaseCurrentIndex() {
-        if (currentIndex < gallery.getDrawingList().size() -1) {
+        if (currentIndex < gallery.getDrawingList().size() - 1) {
             currentIndex++;
         }
     }
