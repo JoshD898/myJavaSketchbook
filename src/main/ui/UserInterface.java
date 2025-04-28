@@ -1,234 +1,103 @@
 package ui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
-import logging.Event;
-import logging.EventLog;
 import model.Drawing;
 import model.Gallery;
-import persistence.JsonReader;
-import persistence.JsonWriter;
 
-/*
- * The main frame from which the gallery GUI is shown
+/**
+ * This class is the JFrame through which the GUI is shown.
+ * 
+ * A singleton pattern is emplyed to make it easy for other classes to access relevant fields.
  */
 public class UserInterface extends JFrame {
-    private static final int MENU_HEIGHT = 50;
-    private static final int MAX_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+    private static UserInterface instance;
 
     private Gallery gallery;
-    private Drawing selectedDrawing;
+    private int currentIndex;
 
-    private JScrollPane galleryPane;
+    private JPanel topPanel;
+    private JPanel middlePanel;
+    private JPanel bottomPanel;
 
-    /*
-     * EFFECTS: Launch the app
-     */
+    private static final String APP_TITLE = "MySketchApp";
+    private static final int DEFAULT_FRAME_WIDTH = 1500;
+    private static final int DEFAULT_FRAME_HEIGHT = 800;
+
     public static void main(String[] args) {
-        new UserInterface();
+        getInstance();
     }
-
-    /*
-     * EFFECTS: Sets up the window in which the gallery will be shown
-     */
-    public UserInterface() {
-        super("My Gallery");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1024, 1024);
-        setLocationRelativeTo(null);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent event) {
-                printLogs();
-                dispose();
-            }
-        });
-
-        setVisible(true);
-        showLoadingScreen();
-
+    
+    private UserInterface() {
+        instance = this;
         gallery = new Gallery();
-        galleryPane = new JScrollPane(new GalleryPanel(gallery, this));
+        currentIndex = 0;
 
-        add(galleryPane);
-        add(editButtonPanel(), BorderLayout.SOUTH);
-        add(savePanel(), BorderLayout.NORTH);
-        revalidate();
+        super.setTitle(APP_TITLE);
+        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setSize(DEFAULT_FRAME_WIDTH, DEFAULT_FRAME_HEIGHT);
+        super.setLayout(new BorderLayout());
 
-        
+        updateDisplay(new EmptyGalleryPanel());
+
+        super.setVisible(true);
     }
 
-    /*
-     * EFFECTS: Displays the loading screen image for 5 seconds, then clears the
-     * frame
-     */
-    private void showLoadingScreen() {
-        add(new JLabel(new ImageIcon("res/LoadingScreen.png")));
-        revalidate();
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            // Do nothing
+    public static UserInterface getInstance() {
+        if (instance == null) {
+            instance = new UserInterface();
         }
-
-        getContentPane().removeAll();
+        return instance;
     }
 
-    /*
-     * EFFECTS: Constructs a panel with 3 buttons: Add, Edit and Delete
-     */
-    private JPanel editButtonPanel() {
-        JPanel panel = new JPanel(new GridLayout(1, 3, 0, 0));
-        panel.setPreferredSize(new Dimension(0, MENU_HEIGHT));
-        panel.setMaximumSize(new Dimension(MAX_WIDTH, MENU_HEIGHT));
-
-        JButton addButton = new JButton("Add");
-        JButton editButton = new JButton("Edit");
-        JButton deleteButton = new JButton("Delete");
-
-        addButton.addActionListener(e -> switchToEditPanel(true));
-        editButton.addActionListener(e -> switchToEditPanel(false));
-        deleteButton.addActionListener(e -> handleDeleteButton());
-
-        panel.add(addButton);
-        panel.add(editButton);
-        panel.add(deleteButton);
-
-        return panel;
+    public Gallery getGallery() {
+        return gallery;
     }
 
-    /*
-     * EFFECTS: Constructs a panel with 2 buttons: Save and Load
+    /**
+     * Modifies the top, bottom and middle panels of the frame according to a layout template
+     * 
+     * @param layout The LayoutTemplate to udate the display to
      */
-    private JPanel savePanel() {
-        JPanel panel = new JPanel(new GridLayout(1, 2, 0, 0));
-        panel.setPreferredSize(new Dimension(0, MENU_HEIGHT));
-        panel.setMaximumSize(new Dimension(MAX_WIDTH, MENU_HEIGHT));
+    public void updateDisplay(AbstractLayout layout) {
+        super.getContentPane().removeAll();
 
-        JButton saveButton = new JButton("Save");
-        JButton loadButton = new JButton("Load");
+        topPanel = layout.getTopPanel();
+        middlePanel = layout.getMiddlePanel();
+        bottomPanel = layout.getBottomPanel();
 
-        saveButton.addActionListener(e -> handleSaveButton());
-        loadButton.addActionListener(e -> handleLoadButton());
+        super.add(topPanel, BorderLayout.NORTH);
+        super.add(middlePanel, BorderLayout.CENTER);
+        super.add(bottomPanel, BorderLayout.SOUTH);
 
-        panel.add(saveButton);
-        panel.add(loadButton);
+        super.revalidate();
+        super.repaint();
+    }    
 
-        return panel;
+    public Drawing getCurrentDrawing() {
+        return gallery.getDrawingList().get(currentIndex);
     }
 
-    /*
-     * MODIFIES: this
-     * EFFECTS: Sets the current gallery to that saved under the file
-     * "./data/save.json",
-     * then re-renders the gallery panel
-     */
-    private void handleLoadButton() {
-        try {
-            JsonReader reader = new JsonReader("./data/save.json");
-            gallery = reader.readGallery();
-            if (reader.readSelectedDrawingTitle() != null) {
-                selectedDrawing = gallery.getDrawing(reader.readSelectedDrawingTitle());
-            }
-            galleryPane.setViewportView(new GalleryPanel(gallery, this));
-        } catch (IOException e) {
-            // do nothing
+    public void increaseCurrentIndex() {
+        if (currentIndex < gallery.getDrawingList().size() -1) {
+            currentIndex++;
         }
     }
 
-    /*
-     * MODIFIES: this
-     * EFFECTS: Saves the current gallery to "./data/save.json"
-     */
-    private void handleSaveButton() {
-        try {
-            JsonWriter writer = new JsonWriter("./data/save.json");
-            writer.open();
-            writer.write(gallery, selectedDrawing);
-            writer.close();
-        } catch (IOException e) {
-            // do nothing
+    public void decreaseCurrentIndex() {
+        if (currentIndex > 0) {
+            currentIndex--;
         }
     }
 
-    /*
-     * MODIFIES: this
-     * EFFECTS: Removes selectedDrawing from the gallery, sets selectedDrawing to
-     * null.
+    /**
+     * Removes the drawing at the current index from the gallery
      */
-    private void handleDeleteButton() {
-        gallery.removeDrawing(selectedDrawing);
-        galleryPane.setViewportView(new GalleryPanel(gallery, this));
-        selectedDrawing = null;
-    }
-
-    /*
-     * MODIFIES: this
-     * EFFECTS: Switches to the edit menu to add or edit a drawing
-     */
-    private void switchToEditPanel(Boolean isNewDrawing) {
-        if (isNewDrawing || selectedDrawing != null) {
-            getContentPane().removeAll();
-            add(new EditPanel(this, isNewDrawing));
-            revalidate();
-        }
-    }
-
-    /*
-     * MODIFIES: this
-     * EFFECTS: Reset the frame to show the gallery panel and buttons
-     */
-    public void switchToGalleryPanel() {
-        getContentPane().removeAll();
-        galleryPane.setViewportView(new GalleryPanel(gallery, this));
-        add(galleryPane);
-        add(editButtonPanel(), BorderLayout.SOUTH);
-        add(savePanel(), BorderLayout.NORTH);
-        revalidate();
-    }
-
-    /*
-     * EFFECTS: Returns selectedDrawing
-     */
-    public Drawing getSelectedDrawing() {
-        return selectedDrawing;
-    }
-
-    /*
-     * EFFECTS: Sets selectedDrawing
-     */
-    public void setSelectedDrawing(Drawing d) {
-        selectedDrawing = d;
-        galleryPane.setViewportView(new GalleryPanel(gallery, this));
-    }
-
-    /*
-     * EFFECTS: Adds a drawing to the gallery
-     */
-    public void addDrawing(Drawing d) {
-        gallery.addDrawing(d);
-    }
-
-    /*
-     * EFFECTS: Prints every event log
-     */
-    private void printLogs() {
-        for (Event e : EventLog.getInstance()) {
-            System.out.println(e.getDescription() + "     |     " + e.getDate());
-        }
+    public void removeCurrentDrawing() {
+        gallery.removeDrawing(currentIndex);
+        decreaseCurrentIndex();
     }
 }

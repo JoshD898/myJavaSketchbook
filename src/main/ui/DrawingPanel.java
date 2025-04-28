@@ -1,72 +1,35 @@
 package ui;
 
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.FontMetrics;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import model.Drawing;
 
-/*
- * A panel that displays a drawing and its title
+/**
+ * Displays a drawing that cannot be edited.
  */
-public class DrawingPanel extends JPanel  {   
-    private Color color;
-    private int width;
-    private int height;
-    private String title;
+public class DrawingPanel extends JPanel {
+    protected Drawing drawing;
 
-    /*
-     * EFFECTS: Sets the size and background color of the panel.
-     */
-    public DrawingPanel(Drawing d, UserInterface guiFrame) {
-        this.color = d.getColor();
-        this.width = d.getWidth();
-        this.height = d.getHeight();
-        this.title = d.getTitle();
+    private final Color BORDER_COLOR = Color.BLACK;
+    private final int BORDER_SIZE = 2;
 
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                guiFrame.setSelectedDrawing(d);
-            }
-        });
+    public DrawingPanel(Drawing drawing) {
+        this.drawing = drawing;
 
-        if (guiFrame.getSelectedDrawing() != null && title == guiFrame.getSelectedDrawing().getTitle()) {
-            setBackground(Color.GRAY);
-        } else {
-            setBackground(Color.WHITE);
-        }
+        super.setPreferredSize(new Dimension(drawing.getWidth(), drawing.getHeight()));
+        super.setMinimumSize(new Dimension(drawing.getWidth(), drawing.getHeight()));
+
+        super.setBorder(BorderFactory.createLineBorder(BORDER_COLOR, BORDER_SIZE));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawDrawing(g);
-    }
-
-    /*
-     * EFFECTS: Draws the square and title on the panel.
-     */
-    private void drawDrawing(Graphics g) {
-        int panelWidth = getWidth();
-        int panelHeight = getHeight();
-
-        int squareX = (panelWidth - width) / 2;
-        int squareY = (panelHeight - height) / 2 - 20; 
-    
-        g.setColor(color);     
-        g.fillRect(squareX, squareY, width, height);
-
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", Font.PLAIN, 14));
-        FontMetrics metrics = g.getFontMetrics();
-        int textX = (panelWidth - metrics.stringWidth(title)) / 2;
-        int textY = squareY + height + metrics.getHeight();
-        g.drawString(title, textX, textY);
+        g.drawImage(drawing, 0, 0, this);
     }
 }
