@@ -14,4 +14,5 @@ com\joshd898\ui\EaselPanel$ColorButton$1.class
 com\joshd898\ui\EditableDrawingPanel$1.class
 com\joshd898\ui\GalleryPanel.class
 com\joshd898\ui\UserInterface.class
+com\joshd898\App.class
 com\joshd898\ui\AbstractLayout$CustomButton.class

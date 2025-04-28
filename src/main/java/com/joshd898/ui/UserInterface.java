@@ -25,11 +25,7 @@ public class UserInterface extends JFrame {
     private static final String APP_TITLE = "MySketchApp";
     private static final int DEFAULT_FRAME_WIDTH = 1500;
     private static final int DEFAULT_FRAME_HEIGHT = 800;
-
-    public static void main(String[] args) {
-        getInstance();
-    }
-    
+  
     private UserInterface() {
         instance = this;
         gallery = new Gallery();
