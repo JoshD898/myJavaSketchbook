@@ -1,4 +1,4 @@
-package model;
+package com.joshd898.model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

@@ -1,10 +1,9 @@
-package ui;
-
-import model.Drawing;
+package com.joshd898.ui;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import com.joshd898.model.Drawing;
 
 
 /**

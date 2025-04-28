@@ -1,4 +1,4 @@
-package ui;
+package com.joshd898.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,12 +10,11 @@ import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import com.joshd898.model.Drawing;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-
-import model.Drawing;
 
 
 /**

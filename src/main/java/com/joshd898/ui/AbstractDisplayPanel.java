@@ -1,4 +1,4 @@
-package ui;
+package com.joshd898.ui;
 
 import java.awt.Dimension;
 import java.awt.Font;

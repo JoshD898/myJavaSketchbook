@@ -1,4 +1,4 @@
-package model;
+package com.joshd898;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.awt.Color;
+import com.joshd898.model.Drawing;
 
 public class TestDrawing {
     Drawing d1;

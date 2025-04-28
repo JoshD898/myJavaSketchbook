@@ -1,13 +1,12 @@
-package ui;
+package com.joshd898.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import com.joshd898.model.Drawing;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
-import model.Drawing;
 
 /**
  * Displays a drawing that cannot be edited.

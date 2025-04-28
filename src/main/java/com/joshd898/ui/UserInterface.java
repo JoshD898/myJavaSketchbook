@@ -1,12 +1,11 @@
-package ui;
+package com.joshd898.ui;
 
 import java.awt.BorderLayout;
+import com.joshd898.model.Drawing;
+import com.joshd898.model.Gallery;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import model.Drawing;
-import model.Gallery;
 
 /**
  * This class is the JFrame through which the GUI is shown.
