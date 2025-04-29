@@ -1,36 +1,34 @@
-package com.joshd898;
+package com.joshd898.modelTests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.awt.Color;
 import com.joshd898.model.Drawing;
 import com.joshd898.model.Gallery;
 
 public class TestGallery {
-    Drawing d1;
-    Drawing d2;
-    Gallery gallery;
+    private Drawing d1;
+    private Gallery gallery;
 
-    @BeforeEach
-    void runBefore() {
+    @Before
+    public void runBefore() {
         d1 = new Drawing(10, 10, Color.WHITE, "Drawing 1");
-        d2 = new Drawing(10, 10, Color.BLACK, "Drawing 2");
 
         gallery = new Gallery();
     }
 
     @Test
-    void testConstructor() {
+    public void testConstructor() {
         assertTrue(gallery.getDrawingList().isEmpty());
     }
 
     @Test
-    void testAddAndRemoveDrawings() {
+    public void testAddAndRemoveDrawings() {
         gallery.addDrawing(d1);
-        assertEquals(gallery.getDrawingList().size(), 1);
+        assertEquals(1, gallery.getDrawingList().size());
         gallery.removeDrawing(0);
         assertTrue(gallery.getDrawingList().isEmpty());
     }

@@ -3,10 +3,16 @@ package com.joshd898.model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Drawing extends BufferedImage {
     private String title;
     private Color backgroundColor;
+    private int drawingID;
 
     public Drawing(int width, int height, Color color, String title) {
         super(width, height, BufferedImage.TYPE_INT_RGB);
@@ -15,9 +21,27 @@ public class Drawing extends BufferedImage {
         this.title = title;
     }
 
-    /**
-     * Sets all pixels in the drawing to original background color
-     */
+    public static Drawing fromBytes(String title, byte[] drawingBytes) throws IOException {
+        BufferedImage img = ImageIO.read(new ByteArrayInputStream(drawingBytes));
+        Drawing d = new Drawing(img.getWidth(), img.getHeight(), Color.WHITE, title);
+        d.setContent(img);
+        return d;
+    }
+
+    public void setDrawingID(int drawingID) {
+        this.drawingID = drawingID;
+    }
+
+    public int getDrawingID() {
+        return drawingID;
+    }
+
+    public byte[] getByteArray() throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(this, "png", baos);
+        return baos.toByteArray();
+    }
+
     public void clear() {
         Graphics2D g = super.createGraphics();
         g.setColor(backgroundColor);
@@ -25,14 +49,7 @@ public class Drawing extends BufferedImage {
         g.dispose();
     }
 
-    /**
-     * Draws a circle with given radius and color around center point (x,y)
-     * 
-     * @param centerX The x-coordinate of the center pixel
-     * @param centerY The y-coordinate of the center pixel
-     * @param radius The radius of the circle to draw
-     * @param color The color of the circle to draw
-     */
+    // Draws a circle with given radius and color at the given point
     public void draw(int centerX, int centerY, int radius, Color color) {
         int width = getWidth();
         int height = getHeight();
@@ -52,25 +69,16 @@ public class Drawing extends BufferedImage {
         }
     }
 
-    /**
-     * Makes a copy of the current drawing
-     * 
-     * @return A copy of the current drawing
-     */
+    // Returns an identical but distinct Drawing object
     public Drawing getCopy() {
         Drawing newDrawing = new Drawing(super.getWidth(), super.getHeight(), backgroundColor, title);
         newDrawing.setContent(this);
         return newDrawing;        
     }
 
-    /**
-     * Sets the content of the drawing to that of another drawing
-     * 
-     * @param d The drawing to copy content from
-     */
-    public void setContent(Drawing d) {
+    public void setContent(BufferedImage img) {
         Graphics2D g = super.createGraphics();
-        g.drawImage(d, 0, 0, null);
+        g.drawImage(img, 0, 0, null);
         g.dispose();
     }
 
