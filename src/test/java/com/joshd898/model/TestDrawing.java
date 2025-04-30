@@ -1,32 +1,60 @@
-package com.joshd898.modelTests;
+package com.joshd898.model;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.awt.Color;
-import com.joshd898.model.Drawing;
+import java.io.IOException;
 
 public class TestDrawing {
     Drawing d1;
     Drawing d2;
 
-    @Before
+    @BeforeEach
     public void runBefore() {
         d1 = new Drawing(10, 10, Color.WHITE, "Drawing 1");
         d2 = new Drawing(10, 10, Color.BLACK, "Drawing 2");
     }
 
     @Test
-    public void testTitleMethods() {
+    void testTitleMethods() {
         assertEquals(d1.getTitle(), "Drawing 1");
         d1.setTitle("Test");
         assertEquals(d1.getTitle(), "Test");
     }
 
     @Test
-    public void testGetCopy() {
+    void testDrawingIDMethods() {
+        d1.setDrawingID(999);
+        assertEquals(999, d1.getDrawingID());
+    }
+
+    @Test
+    void testToAndFromBytes() {
+        try {
+            d1.draw(0, 0, 1, Color.RED);
+            byte[] d1Bytes = d1.getByteArray();
+            Drawing dFromBytes = Drawing.fromBytes(d1.getTitle(), d1.getDrawingID(), d1Bytes);
+
+            assertEquals(d1.getTitle(), dFromBytes.getTitle());
+            assertEquals(d1.getDrawingID(), dFromBytes.getDrawingID());
+            assertEquals(d1.getWidth(), dFromBytes.getWidth());
+            assertEquals(d1.getHeight(), dFromBytes.getHeight());
+
+            for (int x = 0; x < d1.getWidth(); x++) {
+                for (int y = 0; y < d1.getHeight(); y++) {
+                    assertEquals(d1.getRGB(x, y), dFromBytes.getRGB(x, y));
+                }
+            }
+        } catch (IOException e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    void testGetCopy() {
         Drawing copy = d1.getCopy();
 
         assertNotSame(d1, copy);
@@ -42,7 +70,7 @@ public class TestDrawing {
     }
 
     @Test
-    public void testDraw() {
+    void testDraw() {
         assertEquals(d1.getRGB(0,0), Color.WHITE.getRGB());
         d1.draw(0, 0, 2, Color.RED);
         assertEquals(d1.getRGB(0,0), Color.RED.getRGB());          
@@ -53,7 +81,7 @@ public class TestDrawing {
     }
 
     @Test
-    public void testSetContentAndClear() {
+    void testSetContentAndClear() {
         for (int x = 0; x < d1.getWidth(); x++) {
             for (int y = 0; y < d1.getHeight(); y++) {
                 assertEquals(d1.getRGB(x, y), Color.WHITE.getRGB());

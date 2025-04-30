@@ -1,7 +1,7 @@
 package com.joshd898.model;
 
 public class User {
-    private int userID;
+    private long userID;
     private String username;
     private String password;
 
@@ -11,11 +11,11 @@ public class User {
         this.password = password;
     }
 
-    public int getUserID() {
+    public long getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(long userID) {
         this.userID = userID;
     }
 

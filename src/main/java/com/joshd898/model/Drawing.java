@@ -1,5 +1,7 @@
 package com.joshd898.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -12,7 +14,7 @@ import javax.imageio.ImageIO;
 public class Drawing extends BufferedImage {
     private String title;
     private Color backgroundColor;
-    private int drawingID;
+    private long drawingID;
 
     public Drawing(int width, int height, Color color, String title) {
         super(width, height, BufferedImage.TYPE_INT_RGB);
@@ -21,25 +23,26 @@ public class Drawing extends BufferedImage {
         this.title = title;
     }
 
-    public static Drawing fromBytes(String title, byte[] drawingBytes) throws IOException {
+    public static Drawing fromBytes(String title, long drawingID, byte[] drawingBytes) throws IOException {
         BufferedImage img = ImageIO.read(new ByteArrayInputStream(drawingBytes));
         Drawing d = new Drawing(img.getWidth(), img.getHeight(), Color.WHITE, title);
         d.setContent(img);
+        d.setDrawingID(drawingID);
         return d;
-    }
-
-    public void setDrawingID(int drawingID) {
-        this.drawingID = drawingID;
-    }
-
-    public int getDrawingID() {
-        return drawingID;
     }
 
     public byte[] getByteArray() throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(this, "png", baos);
         return baos.toByteArray();
+    }
+
+    public void setDrawingID(long drawingID) {
+        this.drawingID = drawingID;
+    }
+
+    public long getDrawingID() {
+        return drawingID;
     }
 
     public void clear() {
