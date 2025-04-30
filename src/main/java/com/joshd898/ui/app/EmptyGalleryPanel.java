@@ -1,4 +1,4 @@
-package com.joshd898.ui;
+package com.joshd898.ui.app;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.joshd898.ui.UserInterface;
 
 /**
  * Displays a message ot the user, telling them to click a button to add a new drawing.

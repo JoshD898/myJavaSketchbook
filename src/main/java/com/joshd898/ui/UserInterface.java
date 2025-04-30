@@ -3,6 +3,8 @@ package com.joshd898.ui;
 import java.awt.BorderLayout;
 import com.joshd898.model.Drawing;
 import com.joshd898.model.Gallery;
+import com.joshd898.ui.app.AbstractLayout;
+import com.joshd898.ui.app.EmptyGalleryPanel;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +24,7 @@ public class UserInterface extends JFrame {
     private JPanel middlePanel;
     private JPanel bottomPanel;
 
-    private static final String APP_TITLE = "MySketchApp";
+    private static final String APP_TITLE = "MyJavaSketchbook";
     private static final int DEFAULT_FRAME_WIDTH = 1500;
     private static final int DEFAULT_FRAME_HEIGHT = 800;
   

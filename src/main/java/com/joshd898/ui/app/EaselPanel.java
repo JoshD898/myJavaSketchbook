@@ -1,4 +1,4 @@
-package com.joshd898.ui;
+package com.joshd898.ui.app;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,6 +11,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.joshd898.model.Drawing;
+import com.joshd898.ui.UserInterface;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;

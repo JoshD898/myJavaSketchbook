@@ -1,9 +1,11 @@
-package com.joshd898.ui;
+package com.joshd898.ui.app;
 
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+
+import com.joshd898.ui.UserInterface;
 
 /**
  * DisplayPanel displays a view-only version of drawings and their titles.

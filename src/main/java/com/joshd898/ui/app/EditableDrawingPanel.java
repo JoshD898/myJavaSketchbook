@@ -1,4 +1,4 @@
-package com.joshd898.ui;
+package com.joshd898.ui.app;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
