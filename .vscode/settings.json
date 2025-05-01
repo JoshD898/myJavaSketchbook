@@ -11,5 +11,6 @@
     "java.checkstyle.version": "10.2",
     "java.configuration.updateBuildConfiguration": "interactive",
     "explorer.excludeGitIgnore": false,
-    "search.useIgnoreFiles": true
+    "search.useIgnoreFiles": true,
+    "java.debug.settings.onBuildFailureProceed": true
 }

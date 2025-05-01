@@ -1,7 +1,5 @@
 package com.joshd898.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -10,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
 
 public class Drawing extends BufferedImage {
     private String title;
@@ -31,20 +30,14 @@ public class Drawing extends BufferedImage {
         return d;
     }
 
+    // Returns a byte array representation of the drawing content (NOT title, background or id)
     public byte[] getByteArray() throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(this, "png", baos);
         return baos.toByteArray();
     }
 
-    public void setDrawingID(long drawingID) {
-        this.drawingID = drawingID;
-    }
-
-    public long getDrawingID() {
-        return drawingID;
-    }
-
+    // Resets all pixels in the drawing to the background color
     public void clear() {
         Graphics2D g = super.createGraphics();
         g.setColor(backgroundColor);
@@ -79,6 +72,7 @@ public class Drawing extends BufferedImage {
         return newDrawing;        
     }
 
+    // Sets the content of the current drawing to that of the provided image
     public void setContent(BufferedImage img) {
         Graphics2D g = super.createGraphics();
         g.drawImage(img, 0, 0, null);
@@ -91,5 +85,13 @@ public class Drawing extends BufferedImage {
 
     public String getTitle() {
         return title;
+    }
+
+    public void setDrawingID(long drawingID) {
+        this.drawingID = drawingID;
+    }
+
+    public long getDrawingID() {
+        return drawingID;
     }
 }

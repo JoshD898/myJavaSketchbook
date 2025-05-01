@@ -31,19 +31,6 @@ public class UserDAO {
         }
     }
 
-    // Returns true if the given username exists in the Users table
-    public boolean usernameTaken(String username) throws SQLException {
-        String query = "SELECT 1 FROM Users WHERE username = ? LIMIT 1";
-
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, username);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
-            }
-        }    
-    }
-
     // Returns a User if the given username and password correspond to an existing user, throws NoSuchElementException otherwise
     public User getUser(String username, String password) throws SQLException, NoSuchElementException {
         String query = "SELECT userID FROM Users WHERE username = ? AND password = ?";

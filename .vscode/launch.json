@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "LoginPanel",
+            "request": "launch",
+            "mainClass": "com.joshd898.ui.login.LoginPanel",
+            "projectName": "my-java-sketchbook"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "com.joshd898.App",

@@ -60,11 +60,16 @@ public class TestUserDAO extends AbstractDatabaseTest {
     @Test
     void testUsernameTaken() {
         try {
-            assertFalse(userDAO.usernameTaken("testUser"));
             userDAO.addUserToDatabase(user1);
-            assertTrue(userDAO.usernameTaken("testUser"));
         } catch (SQLException e) {
             fail(e.getMessage());
+        }
+
+        try {
+            userDAO.addUserToDatabase(user1);
+            fail("Should not be allowed to add 2 users with the same username");
+        } catch (SQLException e) {
+            // pass
         }
     }
 
@@ -77,7 +82,7 @@ public class TestUserDAO extends AbstractDatabaseTest {
             assertEquals(user1.getUsername(), fetchedUser.getUsername());
             assertEquals(user1.getPassword(), fetchedUser.getPassword());
             assertEquals(user1.getUserID(), fetchedUser.getUserID());
-            
+
         } catch (SQLException | NoSuchElementException e) {
             fail(e.getMessage());
         }

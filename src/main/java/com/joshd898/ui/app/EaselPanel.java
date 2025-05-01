@@ -11,7 +11,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.joshd898.model.Drawing;
-import com.joshd898.ui.UserInterface;
+import com.joshd898.ui.MainFrame;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -61,7 +61,7 @@ public class EaselPanel extends AbstractDisplayPanel {
         if (isNewDrawing) {
             drawingPanel = new EditableDrawingPanel(makeDefaultDrawing(), MIN_BRUSH_SIZE, Color.BLACK);
         } else {
-            drawingPanel = new EditableDrawingPanel(UserInterface.getInstance().getCurrentDrawing().getCopy(), 
+            drawingPanel = new EditableDrawingPanel(MainFrame.getInstance().getCurrentDrawing().getCopy(), 
                                                     MIN_BRUSH_SIZE, 
                                                     Color.BLACK);
         }
@@ -205,7 +205,7 @@ public class EaselPanel extends AbstractDisplayPanel {
     }
 
     private void onCancel() {
-        UserInterface ui = UserInterface.getInstance();
+        MainFrame ui = MainFrame.getInstance();
 
         if (ui.getGallery().getDrawingList().size() == 0) {
             ui.updateDisplay(new EmptyGalleryPanel());
@@ -220,7 +220,7 @@ public class EaselPanel extends AbstractDisplayPanel {
      * If it is a currently existing drawing, then the current drawing content is overwritten.
      */
     private void onSave() {
-        UserInterface ui = UserInterface.getInstance();
+        MainFrame ui = MainFrame.getInstance();
 
         if (isNewDrawing) {
             drawingPanel.drawing.setTitle(title.getText());

@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.joshd898.ui.UserInterface;
+import com.joshd898.ui.MainFrame;
 
 /**
  * Displays a message ot the user, telling them to click a button to add a new drawing.
@@ -42,6 +42,6 @@ public class EmptyGalleryPanel extends AbstractLayout {
     }
 
     private void onNew() {
-        UserInterface.getInstance().updateDisplay(new EaselPanel(true));
+        MainFrame.getInstance().updateDisplay(new EaselPanel(true));
     }
 }

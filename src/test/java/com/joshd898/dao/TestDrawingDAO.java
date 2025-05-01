@@ -133,13 +133,13 @@ public class TestDrawingDAO extends AbstractDatabaseTest {
         try {
             userDAO.addUserToDatabase(user);
 
-            assertTrue(drawingDAO.loadGallery(user).getDrawingList().isEmpty());
+            assertTrue(drawingDAO.loadGallery(user).isEmpty());
 
             drawingDAO.addToDatabase(d1, user);
-            assertEquals(1, drawingDAO.loadGallery(user).getDrawingList().size());
+            assertEquals(1, drawingDAO.loadGallery(user).size());
 
             drawingDAO.addToDatabase(d2, user);
-            assertEquals(2, drawingDAO.loadGallery(user).getDrawingList().size());
+            assertEquals(2, drawingDAO.loadGallery(user).size());
         } catch (SQLException | IOException e) {
             fail(e.getMessage());
         }

@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-import com.joshd898.ui.UserInterface;
+import com.joshd898.ui.MainFrame;
 
 /**
  * DisplayPanel displays a view-only version of drawings and their titles.
@@ -16,7 +16,7 @@ public class GalleryPanel extends AbstractDisplayPanel {
 
     public GalleryPanel() {
         super();
-        drawingPanel = new DrawingPanel(UserInterface.getInstance().getCurrentDrawing());
+        drawingPanel = new DrawingPanel(MainFrame.getInstance().getCurrentDrawing());
         title.setEditable(false);
         title.setText(drawingPanel.drawing.getTitle());
         title.setBorder(BorderFactory.createEmptyBorder());
@@ -46,7 +46,7 @@ public class GalleryPanel extends AbstractDisplayPanel {
         JButton button = new JButton("<");
         button.setPreferredSize(new Dimension(50,50));
         button.addActionListener(e -> {
-            UserInterface ui = UserInterface.getInstance();
+            MainFrame ui = MainFrame.getInstance();
             ui.decreaseCurrentIndex();
             ui.updateDisplay(new GalleryPanel());
         });
@@ -57,7 +57,7 @@ public class GalleryPanel extends AbstractDisplayPanel {
         JButton button = new JButton(">");
         button.setPreferredSize(new Dimension(50,50));
         button.addActionListener(e -> {
-            UserInterface ui = UserInterface.getInstance();
+            MainFrame ui = MainFrame.getInstance();
             ui.increaseCurrentIndex();
             ui.updateDisplay(new GalleryPanel());
         });
@@ -65,7 +65,7 @@ public class GalleryPanel extends AbstractDisplayPanel {
     }
 
     private void onDelete() {
-        UserInterface ui = UserInterface.getInstance();
+        MainFrame ui = MainFrame.getInstance();
 
         ui.removeCurrentDrawing();
 
@@ -77,11 +77,11 @@ public class GalleryPanel extends AbstractDisplayPanel {
     }
 
     private void onEdit() {
-        UserInterface.getInstance().updateDisplay(new EaselPanel(false));
+        MainFrame.getInstance().updateDisplay(new EaselPanel(false));
     }
 
     private void onNew() {
-        UserInterface.getInstance().updateDisplay(new EaselPanel(true));
+        MainFrame.getInstance().updateDisplay(new EaselPanel(true));
     }
 }
 
