@@ -2,6 +2,8 @@
 ![Java](https://img.shields.io/badge/Java-11-blue.svg)
 ![Maven](https://img.shields.io/badge/build-Maven-blue)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
+[![CodeFactor](https://www.codefactor.io/repository/github/joshd898/myJavaSketchbook/badge)](https://www.codefactor.io/repository/github/joshd898/myJavaSketchbook)
+![Code Size](https://img.shields.io/github/languages/code-size/joshD898/myJavaSketchbook)
 
 **MyJavaSketchbook** is a Java desktop application that enables users to create, edit, and manage digital drawings through an guided user interface. The application supports cloud-based storage, allowing users to securely save and access their artwork accross multiple devices from anywhere with an internet connection.
 
