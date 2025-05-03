@@ -4,11 +4,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.joshd898.App;
-import org.joshd898.model.Gallery;
-import org.joshd898.ui.app.EmptyDisplayPanel;
-import org.joshd898.ui.login.RegistrationAndLoginPanel;
-
 /**
  * This class is the JFrame through which the GUI is shown.
  * 
@@ -26,15 +21,6 @@ public class MainFrame extends JFrame {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setSize(DEFAULT_FRAME_WIDTH, DEFAULT_FRAME_HEIGHT);
         super.setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
-
-        // If there is a connection to the database, show login panel
-        // Else, launch main app with an empty gallery
-        if (App.getInstance().hasConnection()) {
-            updateDisplay(new RegistrationAndLoginPanel());
-        } else {
-            App.getInstance().setGallery(new Gallery());
-            updateDisplay(new EmptyDisplayPanel());
-        }
         super.setVisible(true);
     }
 

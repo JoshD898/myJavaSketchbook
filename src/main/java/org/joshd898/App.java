@@ -17,6 +17,7 @@ import org.joshd898.model.User;
 import org.joshd898.ui.MainFrame;
 import org.joshd898.ui.app.DisplayPanel;
 import org.joshd898.ui.app.EmptyDisplayPanel;
+import org.joshd898.ui.login.RegistrationAndLoginPanel;
 
 
 // The class from which the application is run. 
@@ -32,8 +33,12 @@ public class App {
     private Gallery gallery;
 
     public static void main(String[] args) {
-        App.getInstance();
-        MainFrame.getInstance();
+        if (App.getInstance().hasConnection()) {
+            MainFrame.getInstance().updateDisplay(new RegistrationAndLoginPanel());
+        } else {
+            App.getInstance().setGallery(new Gallery());
+            MainFrame.getInstance().updateDisplay(new EmptyDisplayPanel());
+        }
     }
 
     private App() {

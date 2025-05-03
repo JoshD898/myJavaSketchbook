@@ -1,40 +1,24 @@
 # MySketchApp
+![Java](https://img.shields.io/badge/Java-11-blue.svg)
+![Maven](https://img.shields.io/badge/build-Maven-blue)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
 
-
-TAGS TO ADD: Java-11 Maven, PostgrSQL, Codecov, Codefactor
-
-MySketchApp is a Java desktop application that allows users to create and edit drawings. A cloud based server is implemented to allow for 
-
-
-
-This project follows the Model - View - Control design pattern to allow for ...
-
-
-
+**MySketchApp** is a Java desktop application that enables users to create, edit, and manage digital drawings through an guided user interface. The application supports cloud-based storage, allowing users to securely save and access their artwork accross multiple devices from anywhere with an internet connection.
 
 ## Technologies
-- Architechture: Apache Maven
-- GUI: Java Swing
-- Database: PostgreSQL
-- Testing: JUnit, Docker
 
-## Database
-
-The cloud based PostgreSQL database for this project is hosted on Amazon Web Service servers through an account with Supabase.
-
-databaseSetup.sql contains the statements used to initialize the tables in the database.
-
-## Testing
-Thourough testing of the Model and Data Access Object classes was performed using JUnit.
-
-To test the Data Access Object classes, Docker is used to create and destroy a local PostgreSQL server whenever tests are run.
+- **Architechture:** Apache Maven
+- **User Interface:** Java Swing
+- **Database:** PostgreSQL (cloud-hosted via AWS and Supabase)
+- **Testing:** JUnit with Docker-based PostgreSQL for integration testing
 
 ## Install instructions
 
-The Apache Maven shade plugin was used to package the entire project and all dependencies into a single JAR file.
+The application is packaged into a self-contained JAR file using the Apache Maven Shade Plugin, bundling all the required dependencies into a single JAR file.
 
-The desktop application is distributed as a runnable JAR file. Download the latest release here. A Java Runtime Environment (JRE) is required to run the JAR file.
+To run the application:
 
-
+1. Download the latest release
+2. Run the JAR file with a Java Runtime Environment (JRE 11 or higher).
 
 ## Screenshots

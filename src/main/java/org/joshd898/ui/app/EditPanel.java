@@ -78,9 +78,9 @@ public class EditPanel extends AbstractAppLayout {
         super.addButtonToBottomPanel(add);
 
         if (isNewDrawing) {
-            drawingPanel = new EditableDrawingPanel(new Drawing(DRAWING_WIDTH, DRAWING_HEIGHT, DRAWING_BACKGROUND_COLOR, DEFAULT_DRAWING_TITLE), MIN_BRUSH_SIZE, Color.BLACK);
+            drawingPanel = new EditableDrawingPanel(new Drawing(DRAWING_WIDTH, DRAWING_HEIGHT, DRAWING_BACKGROUND_COLOR, DEFAULT_DRAWING_TITLE), MAX_BRUSH_SIZE / 2, Color.BLACK);
         } else {
-            drawingPanel = new EditableDrawingPanel(App.getInstance().getGallery().getCurrentDrawing().getCopy(), MIN_BRUSH_SIZE, Color.BLACK);
+            drawingPanel = new EditableDrawingPanel(App.getInstance().getGallery().getCurrentDrawing().getCopy(), MAX_BRUSH_SIZE / 2, Color.BLACK);
         }
 
         brushIndicator = new BrushIndicator();
