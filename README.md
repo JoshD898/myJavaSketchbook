@@ -11,7 +11,7 @@
 
 - **Architechture:** Apache Maven
 - **User Interface:** Java Swing
-- **Database:** PostgreSQL (cloud-hosted via AWS and Supabase)
+- **Database:** PostgreSQL (cloud-hosted on AWS servers via Supabase)
 - **Testing:** JUnit with Docker-based PostgreSQL for integration testing
 
 ## Install instructions
