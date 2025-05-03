@@ -22,3 +22,14 @@ To run the application:
 2. Run the JAR file with a Java Runtime Environment (JRE 11 or higher).
 
 ## Screenshots
+
+<table>
+  <tr>
+    <td><img src="./screenshots/login.png" width="500"/></td>
+    <td><img src="./screenshots/create-account.png" width="500"/></td>
+  </tr>
+  <tr>
+    <td><img src="./screenshots/edit.png" width="500"/></td>
+    <td><img src="./screenshots/gallery-view.png" width="500"/></td>
+  </tr>
+</table>
