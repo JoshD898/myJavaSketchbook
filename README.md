@@ -16,11 +16,11 @@
 
 ## Install instructions
 
-The application is packaged into a self-contained JAR file using the Apache Maven Shade Plugin, bundling all the required dependencies into a single JAR file.
+The application is packaged into a uber-JAR file using the Apache Maven Shade Plugin, bundling all the required dependencies into a single file.
 
 To run the application:
 
-1. Download the latest release
+1. Download the [latest release](https://github.com/JoshD898/myJavaSketchbook/releases/tag/1.0).
 2. Run the JAR file with a Java Runtime Environment (JRE 11 or higher).
 
 ## Screenshots
