@@ -9,7 +9,7 @@
     ],
     "java.checkstyle.configuration": "${workspaceFolder}/checkstyle.xml",
     "java.checkstyle.version": "10.2",
-    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.updateBuildConfiguration": "automatic",
     "explorer.excludeGitIgnore": false,
     "search.useIgnoreFiles": true,
     "java.debug.settings.onBuildFailureProceed": true
